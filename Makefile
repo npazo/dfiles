@@ -16,7 +16,7 @@ sync:
 	if ! [ -x "$(shell command -v curl)" ]; then \
   		echo 'Error: curl is not installed.'; \
 	else \
-		curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o git-completion.bash; \
+		curl -s https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o git-completion.bash; \
 		[ -f ~/.git-completion.bash ] || ln -s $(PWD)/git-completion.bash ~/.git-completion.bash; \
 	fi;
 
@@ -34,3 +34,8 @@ clean:
 	rm -f ~/.gitconfig
 	rm -f ~/.ssh/config
 	rm -f ~/.vimrc 
+
+check:
+	[ ! -f ~/.ssh/sshconfig.local ] && echo "WARNING: Local SSH config doesn not exist"
+	[ ! -f ~/.gitconfig.local ] && echo "WARNING: Local Git config doesn not exist"
+	[ ! -f ~/.ansible.cfg ] && echo "WARNING: Local Ansible config doesn not exist"
