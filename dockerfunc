@@ -1,0 +1,68 @@
+aws(){
+	docker run -it --rm \
+		-v "${HOME}/.aws:/root/.aws" \
+		--log-driver none \
+		--name aws \
+		awscli "$@"
+}
+
+python(){
+	docker run -it --rm \
+		-v "$(pwd):/tmp/src" \
+		-w /tmp/src \
+		--name python \
+		python "$@"
+}
+
+pythonaws(){
+	docker run -it --rm \
+		-v "${HOME}/.aws:/root/.aws" \
+		-v "$(pwd):/tmp/src" \
+		-w /tmp/src \
+		--log-driver none \
+		--name python \
+		python "$@"
+}
+
+terraform(){
+	docker run --rm \
+		-v "${HOME}/.aws:/root/.aws" \
+		-v "$(pwd):/tmp/src" \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		-w /tmp/src \
+		--name terraform \
+		terraform "$@"
+}
+
+ansible(){
+	docker run --rm \
+		-v "$(pwd):/tmp/src" \
+		-w /tmp/src \
+		--name ansible \
+		ansible "$@"
+}
+
+ansible-playbook(){
+	docker run --rm \
+		-v "$(pwd):/tmp/src" \
+		-v "${HOME}/.aws:/root/.aws" \
+		-v "$HOME/.ansible.cfg:/root/.ansible.cfg" \
+		-v "$HOME/.ssh:/root/.ssh" \
+		-w /tmp/src \
+		--entrypoint ansible-playbook \
+		--name ansible \
+		ansible \
+		"$@"
+}
+
+ansible-inventory(){
+	docker run --rm \
+		-v "$(pwd):/tmp/src" \
+		-v "${HOME}/.aws:/root/.aws" \
+		-v "$HOME/.ansible.cfg:/root/.ansible.cfg" \
+		-v "$HOME/.ssh:/root/.ssh" \
+		-w /tmp/src \
+		--entrypoint ansible-inventory \
+		--name ansible \
+		ansible "$@"
+}

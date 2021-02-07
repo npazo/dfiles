@@ -1,0 +1,29 @@
+#!/bin/bash
+alias la="ls -lahF"
+alias ll="ls -la"
+alias ls="ls -GFh"
+
+alias hg="history |grep"
+alias c="clear"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# IP addresses (from jess frazelle)
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | grep -Eo '([0-9]*\\.){3}[0-9]*' | grep -v '127.0.0.1'"
+
+# Always enable colored `grep` output
+alias grep='grep --color=auto '
+
+alias rlbp="source ~/.bash_profile"
+alias g="git"
+
+# Git
+alias gcb="git checkout -b"
+
+# Docker
+alias dbuild='docker build -t ${PWD##*/}:latest .'
+alias drun="docker run -it --rm -v $(pwd):/tmp/src -w /tmp/src"

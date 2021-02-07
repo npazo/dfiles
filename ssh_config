@@ -1,0 +1,9 @@
+# ~/.ssh/config
+
+Include ~/.ssh/sshconfig.local
+
+Host github.com
+    IdentityFile ~/.ssh/github
+
+Host gitlab.com
+    IdentityFile ~/.ssh/github
