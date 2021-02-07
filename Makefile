@@ -1,6 +1,6 @@
 SHELL := bash
 
-all: clean sync
+all: clean sync check
 
 sync:
 	[ -f ~/.aliases ] || ln -s $(PWD)/aliases ~/.aliases
