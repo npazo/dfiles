@@ -82,6 +82,11 @@ else
 	hostStyle="${cyan}";
 fi;
 
+cloud=""
+if [[ -e /var/lib/cloud/instance ]]; then
+        cloud="☁️  "
+fi
+
 prompt_git() {
 	local s='';
 	local branchName='';
