@@ -6,6 +6,7 @@
 
 	rh = reset --hard HEAD
 	co = checkout
+	cam = commit -am
 
 	# Undo your last commit, but don't throw away your changes
 	#git reset --soft HEAD^
