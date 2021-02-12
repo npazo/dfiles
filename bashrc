@@ -75,9 +75,12 @@ else
 	userStyle="${blue}";
 fi;
 
+
+hostnameStyle="h"
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
 	hostStyle="${yellow}";
+	hostnameStyle="H"
 else
 	hostStyle="${cyan}";
 fi;
@@ -146,7 +149,7 @@ PS1="\\[\\033]0;\\w\\007\\]";
 # PS1+="\\[${bold}\\]\\n"; # newline
 PS1+="↪ \\[${userStyle}\\]\\u"; # username
 PS1+="\\[${white}\\] at ";
-PS1+="\\[${hostStyle}\\]${cloud}\\H"; # host
+PS1+="\\[${hostStyle}\\]${cloud}\\${hostnameStyle}"; # host
 PS1+="\\[${white}\\] in ";
 PS1+="\\[${green}\\]\\w "; # working directory
 PS1+="\$(prompt_git \"${violet}\")"; # Git repository details
