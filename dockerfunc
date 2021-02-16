@@ -1,37 +1,13 @@
-aws(){
-	docker run -it --rm \
-		-v "${HOME}/.aws:/root/.aws" \
-		--log-driver none \
-		--name aws \
-		awscli "$@"
-}
-
-python(){
-	docker run -it --rm \
-		-v "$(pwd):/tmp/src" \
-		-w /tmp/src \
-		--name python \
-		python "$@"
-}
-
-pythonaws(){
-	docker run -it --rm \
-		-v "${HOME}/.aws:/root/.aws" \
-		-v "$(pwd):/tmp/src" \
-		-w /tmp/src \
-		--log-driver none \
-		--name python \
-		python "$@"
-}
-
-terraform(){
+# generic function to open /bin/sh for the specified docker container
+dshell() {
 	docker run --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-w /tmp/src \
-		--name terraform \
-		terraform "$@"
+		-it \
+		--entrypoint=/bin/sh \
+		$1
 }
 
 ansible(){
@@ -65,4 +41,51 @@ ansible-inventory(){
 		--entrypoint ansible-inventory \
 		--name ansible \
 		ansible "$@"
+}
+
+aws(){
+	docker run -it --rm \
+		-v "${HOME}/.aws:/root/.aws" \
+		--log-driver none \
+		--name aws \
+		awscli "$@"
+}
+
+packer(){
+	docker run --rm \
+		-v "${HOME}/.aws:/root/.aws" \
+		-v "$(pwd):/tmp/src" \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		-w /tmp/src \
+		--name packer \
+		packer "$@"
+}
+
+
+python(){
+	docker run -it --rm \
+		-v "$(pwd):/tmp/src" \
+		-w /tmp/src \
+		--name python \
+		python "$@"
+}
+
+pythonaws(){
+	docker run -it --rm \
+		-v "${HOME}/.aws:/root/.aws" \
+		-v "$(pwd):/tmp/src" \
+		-w /tmp/src \
+		--log-driver none \
+		--name python \
+		python "$@"
+}
+
+terraform(){
+	docker run --rm \
+		-v "${HOME}/.aws:/root/.aws" \
+		-v "$(pwd):/tmp/src" \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		-w /tmp/src \
+		--name terraform \
+		terraform "$@"
 }
