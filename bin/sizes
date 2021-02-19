@@ -261,7 +261,7 @@ def all_sizes(dir)
 
   # trim file list to just size and filename
   files.map! {|line|
-    line.sub(/\S{10,11} +\d+ +\S+ +\w+ +(\d+) +\w{3} +\d+ +[\d:]+ +(.*?)$/, "\\1\t\\2")
+    line.sub(/\S{10,11} +\d+ +\S+ +[\w-]+ +(\d+) +\w{3} +\d+ +[\d:]+ +(.*?)$/, "\\1\t\\2")
   }
 
 
