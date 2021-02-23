@@ -27,3 +27,5 @@ alias gcb="git checkout -b"
 # Docker
 alias dbuild='docker build -t ${PWD##*/}:latest .'
 alias drun="docker run -it --rm -v $(pwd):/tmp/src -w /tmp/src"
+
+alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
