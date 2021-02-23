@@ -14,6 +14,12 @@ export HISTFILESIZE=$HISTSIZE                   # big big history
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 type shopt &> /dev/null && shopt -s histappend  # append to history, don't overwrite it
 
+# apt install source-highlight
+if [ -f /usr/bin/src-hilite-lesspipe.sh ]; then	
+	export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+	export LESS=' -R '
+fi
+
 if [ -x /usr/bin/dircolors ]; then
 	# shellcheck disable=SC2015
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
