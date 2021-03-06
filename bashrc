@@ -7,6 +7,8 @@
 
 GIT_PS1_SHOWUNTRACKEDFILES=true
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 export EDITOR=vim
 export HISTCONTROL="erasedups:ignoreboth"       # no duplicate entries
 export HISTSIZE=50000000                          # big big history (default is 500)
