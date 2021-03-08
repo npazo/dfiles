@@ -2,6 +2,31 @@
 # BASH
 ############
 
+bump_version(){
+	# Set period as delimiter
+	IFS='.'
+	read -a SPLIT_VERSION <<< "$1"
+
+	MAJOR=${SPLIT_VERSION[0]}
+	MINOR=${SPLIT_VERSION[1]}
+	PATCH=${SPLIT_VERSION[2]}
+
+	if [ $2 == "major" ]; then
+		MAJOR=$((MAJOR+=1))
+		MINOR=0
+		PATCH=0
+	elif [ $2 == "minor" ]; then
+		MINOR=$((MINOR+=1))
+		PATCH=0
+	elif [ $2 == "patch" ]; then
+		PATCH=$((PATCH+=1))
+	else
+		echo "error"
+	fi
+
+	return "$MAJOR.$MINOR.$PATCH"
+}
+
 # Create a new directory and enter it
 mkd() {
 	mkdir -p "$@"
