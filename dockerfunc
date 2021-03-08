@@ -44,14 +44,11 @@ ansible-inventory(){
 }
 
 aws(){
-	echo "aws docker"
-	set -x
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		--log-driver none \
 		--name aws \
-		awscli "$@"
-	set +x
+		awscli "$@"	
 }
 
 packer(){
