@@ -24,7 +24,7 @@ bump_version(){
 		echo "error"
 	fi
 
-	return "$MAJOR.$MINOR.$PATCH"
+	echo "$MAJOR.$MINOR.$PATCH"
 }
 
 # Create a new directory and enter it
