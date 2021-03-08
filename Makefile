@@ -7,10 +7,11 @@ sync:
 	[ -f ~/.bash_profile ] || ln -s $(PWD)/bash_profile ~/.bash_profile
 	[ -f ~/.bash_functions ] || ln -s $(PWD)/bash_functions ~/.bash_functions
 	[ -f ~/.bashrc ] || ln -s $(PWD)/bashrc ~/.bashrc
-	[ -f ~/.bin ] || ln -s $(PWD)/bin/ ~/.bin
+	[ -f ~/.bin/ ] || ln -s $(PWD)/bin ~/.bin
 	[ -f ~/.dockerfunc ] || ln -s $(PWD)/dockerfunc ~/.dockerfunc
 	[ -f ~/.git-prompt.sh ] || ln -s $(PWD)/git-prompt.sh ~/.git-prompt.sh
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
+	[ -f ~/.gitignore_global ] || ln -s $(PWD)/gitignore_global ~/.gitignore_global
 	[ -f ~/.ssh/config ] || ln -s $(PWD)/ssh_config ~/.ssh/config
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux.conf ~/.tmux.conf
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
@@ -33,6 +34,7 @@ clean:
 	rm -f ~/.bin
 	rm -f ~/.dockerfunc
 	rm -f ~/.git-completion.bash
+	rm -f ~/.gitignore_global
 	rm -f ~/.git-prompt.sh
 	rm -f ~/.gitconfig
 	rm -f ~/.ssh/config

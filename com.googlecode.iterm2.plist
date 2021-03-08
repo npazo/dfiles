@@ -862,7 +862,7 @@
 					<key>partial</key>
 					<true/>
 					<key>regex</key>
-					<string>(\w+) at ☁️  (\w+)</string>
+					<string>(\S+) at ☁️  (\S+)</string>
 				</dict>
 				<dict>
 					<key>action</key>
