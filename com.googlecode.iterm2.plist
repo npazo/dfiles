@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AppleAntiAliasingThreshold</key>
-	<integer>1</integer>
-	<key>ApplePressAndHoldEnabled</key>
-	<false/>
-	<key>AppleScrollAnimationEnabled</key>
-	<integer>0</integer>
-	<key>AppleSmoothFixedFontsSizeThreshold</key>
-	<integer>1</integer>
-	<key>AppleWindowTabbingMode</key>
-	<string>manual</string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Afterglow</key>
@@ -862,7 +852,7 @@
 					<key>partial</key>
 					<true/>
 					<key>regex</key>
-					<string>(\S+) at ☁️  (\S+)</string>
+					<string>(\S+) at ☁️  ([\w-]+)</string>
 				</dict>
 				<dict>
 					<key>action</key>
@@ -873,6 +863,16 @@
 					<true/>
 					<key>regex</key>
 					<string>(\w+) at (\w+)</string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>SetHostnameTrigger</string>
+					<key>parameter</key>
+					<string>\1@\2</string>
+					<key>partial</key>
+					<true/>
+					<key>regex</key>
+					<string>(\w+)@(\S+)</string>
 				</dict>
 			</array>
 			<key>Unlimited Scrollback</key>
