@@ -1,4 +1,5 @@
 #!/bin/bash
+
 alias la="ls -lahF"
 alias ll="ls -la"
 alias ls="ls -GFh"
@@ -12,6 +13,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias dsrc="cd ~/src"
+alias python3="python"
 
 # IP addresses (from jess frazelle)
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
