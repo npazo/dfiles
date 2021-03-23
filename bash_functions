@@ -27,6 +27,16 @@ bump_version(){
 	echo "$MAJOR.$MINOR.$PATCH"
 }
 
+# delete a line number for known hosts, for those pesky times the same DNS is used for a new server
+del_known() {
+	sed -i.bak '$1d' ~/.ssh/known_hosts
+}
+
+# find shorthand. https://github.com/murshidazher/dotfiles/blob/main/bash/.functions
+f() {
+  find / -name "$1" 2>&1 | grep -v -e 'Permission denied' -e 'Operation not permitted'
+}
+
 # Create a new directory and enter it
 mkd() {
 	mkdir -p "$@"
