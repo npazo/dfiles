@@ -225,6 +225,8 @@
 	<true/>
 	<key>IRMemory</key>
 	<integer>4</integer>
+	<key>Mark Alert Action</key>
+	<string>Modal Alert</string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -864,6 +866,19 @@
 					<key>regex</key>
 					<string>(\w+) at (\w+)</string>
 				</dict>
+<<<<<<< HEAD
+=======
+				<dict>
+					<key>action</key>
+					<string>SetHostnameTrigger</string>
+					<key>parameter</key>
+					<string>\1@\2</string>
+					<key>partial</key>
+					<true/>
+					<key>regex</key>
+					<string>\[(\w+)@([\w-]+)</string>
+				</dict>
+>>>>>>> 212ceb0 (add better triggers)
 			</array>
 			<key>Unlimited Scrollback</key>
 			<false/>
