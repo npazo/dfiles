@@ -1,3 +1,7 @@
+#!/bin/sh
+
+set -a
+
 # generic function to open /bin/sh for the specified docker container
 dshell() {
 	docker run --rm \
@@ -81,7 +85,7 @@ pythonaws(){
 }
 
 terraform(){
-	docker run --rm \
+	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
 		-v /var/run/docker.sock:/var/run/docker.sock \
