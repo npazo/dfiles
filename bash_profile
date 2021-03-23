@@ -6,3 +6,5 @@ for file in ~/.{aliases,bashrc,bash_functions,dockerfunc,git-completion.bash,loc
 done
 
 export PATH="$HOME/.bin:$PATH"
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
