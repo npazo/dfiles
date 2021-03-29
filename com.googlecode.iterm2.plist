@@ -713,7 +713,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 16</string>
+			<string>Monaco 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -854,7 +854,7 @@
 					<key>partial</key>
 					<true/>
 					<key>regex</key>
-					<string>(\w+) at ☁️  (\w+)</string>
+					<string>(\S+) at ☁️  ([\w-]+)</string>
 				</dict>
 				<dict>
 					<key>action</key>
@@ -866,8 +866,6 @@
 					<key>regex</key>
 					<string>(\w+) at (\w+)</string>
 				</dict>
-<<<<<<< HEAD
-=======
 				<dict>
 					<key>action</key>
 					<string>SetHostnameTrigger</string>
@@ -878,7 +876,6 @@
 					<key>regex</key>
 					<string>\[(\w+)@([\w-]+)</string>
 				</dict>
->>>>>>> 212ceb0 (add better triggers)
 			</array>
 			<key>Unlimited Scrollback</key>
 			<false/>
