@@ -75,9 +75,14 @@ python(){
 }
 
 pythonaws(){
+	env_string=""
+	if [[ -f "env.ignore" ]]; then
+		env_string="--env-file ./env.ignore"
+	fi
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
+		$env_string \
 		-w /tmp/src \
 		--log-driver none \
 		--name python \
