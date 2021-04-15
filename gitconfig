@@ -13,7 +13,7 @@
 
 	# Remove branches that have already been merged with master
 	# a.k.a. ‘delete merged’
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d; git remote -v update -p"
+	dm = "!git branch --merged | egrep -v \"(^\\*|master|main|dev|trunk)\" | xargs -n 1 git branch -d; git remote -v update -p"
 
 	# Delete "pr branches that start with 'pr-'"
 	dpr = git branch | grep pr- | xargs git branch -d
@@ -29,7 +29,7 @@
 	# Checkout a pull request from origin (of a github repository)
 	# git pull origin pull/163/head <---- update pr 163
   	pr = !"pr() { git fetch origin pull/$1/head:pr-$1; git checkout pr-$1; }; pr"
-	
+
 	# View the current working tree status using the short format
 	s = status -s
 
