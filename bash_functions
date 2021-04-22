@@ -29,7 +29,7 @@ bump_version(){
 
 # delete a line number for known hosts, for those pesky times the same DNS is used for a new server
 del_known() {
-	sed -i.bak '$1d' ~/.ssh/known_hosts
+	sed -i.bak "$1d" ~/.ssh/known_hosts
 }
 
 # find shorthand. https://github.com/murshidazher/dotfiles/blob/main/bash/.functions
@@ -77,7 +77,7 @@ dcleanup(){
   	docker volume rm "${dangling_volumes[@]}" 2>/dev/null
 }
 
-del_stopped(){
+ddel_stopped(){
 	local name=$1
 	local state
 	state=$(docker inspect --format "{{.State.Running}}" "$name" 2>/dev/null)
@@ -87,6 +87,12 @@ del_stopped(){
 	fi
 }
 
+ddel_image(){
+	docker images -a \
+	| grep "$1" \
+	| awk '{printf "%s:%s\n",$1,$2}' \
+	| xargs docker rmi
+}
 
 #############
 # GIT
@@ -122,15 +128,15 @@ check_reqs () {
 		do
 			if [[ $line == *"=="* ]]; then
 				packages+=(`echo $line | cut -d'=' -f 1`)
-				echo "$line ($f)" | sed "s/$regex_home/~/" >> /tmp/check_reqs	
+				echo "$line ($f)" | sed "s/$regex_home/~/" >> /tmp/check_reqs
 			fi
-		done		
-	done	
+		done
+	done
 	sort /tmp/check_reqs
-	
+
 	## sort and filter unique packages
 	packages=($(printf "%s\n" "${packages[@]}" | sort -u))
-	
+
 	printf "\n\nLatest Versions\n-----------------------\n"
 
 	for p in ${packages[@]}
@@ -140,7 +146,7 @@ check_reqs () {
 	done
 
 	rm /tmp/check_reqs
-	
+
 }
 
 # helper function for get_latest_pypi_version https://www.linuxjournal.com/content/parsing-rss-news-feed-bash-script
@@ -153,10 +159,10 @@ xmlgetnext () {
 get_latest_pypi_version () {
 	url="https://pypi.org/rss/project/${1}/releases.xml"
 	item_flag="false"
-	
+
 	curl -s $url | while xmlgetnext ; do
-		if [[ $TAG == "item" && $item_flag == "false" ]]; then			
-			item_flag="true"			
+		if [[ $TAG == "item" && $item_flag == "false" ]]; then
+			item_flag="true"
 		elif [[ $item_flag == "true" ]]; then
 			echo $VALUE
 			return
