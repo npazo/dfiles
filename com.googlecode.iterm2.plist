@@ -876,6 +876,16 @@
 					<key>regex</key>
 					<string>\[(\w+)@([\w-]+)</string>
 				</dict>
+				<dict>
+					<key>action</key>
+					<string>SetHostnameTrigger</string>
+					<key>parameter</key>
+					<string>\1@\2</string>
+					<key>partial</key>
+					<true/>
+					<key>regex</key>
+					<string>(\w+)@(\w+.\w+)</string>
+				</dict>
 			</array>
 			<key>Unlimited Scrollback</key>
 			<false/>
