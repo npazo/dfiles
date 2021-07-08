@@ -52,7 +52,15 @@ aws(){
 		-v "${HOME}/.aws:/root/.aws" \
 		--log-driver none \
 		--name aws \
-		awscli "$@"	
+		awscli "$@"
+}
+
+mdtohtml(){
+	docker run --rm \
+		-v $(pwd):/tmp/src \
+		--workdir=/tmp/src \
+		ubuntu \
+		pandoc -o temp.html $1
 }
 
 packer(){
