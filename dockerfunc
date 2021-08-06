@@ -4,13 +4,18 @@ set -a
 
 # generic function to open /bin/sh for the specified docker container
 dshell() {
+	if [[ -z "${D_SHELL}" ]]; then
+  		D_SHELL="/bin/sh"
+	else
+  		D_SHELL="${D_SHELL}"
+	fi
 	docker run --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-w /tmp/src \
 		-it \
-		--entrypoint=/bin/sh \
+		--entrypoint=${D_SHELL} \
 		$1
 }
 
@@ -98,11 +103,16 @@ pythonaws(){
 }
 
 terraform(){
+	if [[ -z "${D_IMG_VER}" ]]; then
+  		VERSION="latest"
+	else
+  		VERSION="${D_IMG_VER}"
+	fi
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-w /tmp/src \
 		--name terraform \
-		terraform "$@"
+		terraform:${VERSION} "$@"
 }
