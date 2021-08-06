@@ -98,6 +98,12 @@ ddel_image(){
 # GIT
 ############
 
+git_email() {
+	wd=`pwd`
+	echo "[includeIf \"gitdir:$wd/\"]" >> ~/.gitconfig.local
+	echo -e '\t'"path = .gitconfig.$1" >> ~/.gitconfig.local
+}
+
 # Copy just different files between current branch and master to a subfolder
 git_save() {
 	tmpDir="./git.diff.files"
