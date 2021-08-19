@@ -33,6 +33,7 @@ __git_complete g __git_main
 
 # Git
 alias gcb="git checkout -b"
+alias fix_dot_remote="git remote set-url origin git@github:npazo/dfiles.git"
 
 # Docker
 alias dbuild='docker build -t ${PWD##*/}:latest .'
