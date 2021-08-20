@@ -39,4 +39,8 @@ alias fix_dot_remote="git remote set-url origin git@github.com:npazo/dfiles.git"
 alias dbuild='docker build -t ${PWD##*/}:latest .'
 alias drun="docker run -it --rm -v $(pwd):/tmp/src -w /tmp/src"
 
+# Terraform
+alias tf_apply="terraform apply"
+alias tf_apply_aa="terraform apply --auto-approve"
+
 alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
