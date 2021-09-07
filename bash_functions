@@ -27,6 +27,19 @@ bump_version(){
 	echo "$MAJOR.$MINOR.$PATCH"
 }
 
+## this hacky function is designed to avoid issues I have when running python exclusively from Docker
+## the launcher for VS Code assumes that the python command is just `python`, so if it fails
+## 		when running, first try to update the launcher to make the path to `python` absolute
+code() {
+	output="$(/usr/local/bin/code $1 2>&1 > /dev/null)"
+	if [[ $output == *"//MacOS/Electron"* ]]; then
+		sed -i.bak 's|python|/usr/bin/python|' /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code
+		/usr/local/bin/code $1
+	else
+		echo $output
+	fi
+}
+
 # delete a line number for known hosts, for those pesky times the same DNS is used for a new server
 del_known() {
 	sed -i.bak "$1d" ~/.ssh/known_hosts
