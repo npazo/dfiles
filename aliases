@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#curl https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker -o /etc/bash_completion.d/docker.sh
+#curl -XGET https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker > $(brew --prefix)/etc/bash_completion.d/docker
+
+
 alias la="ls -lahF"
 alias ll="ls -la"
 alias ls="ls -GFh"
@@ -23,13 +27,20 @@ alias localip="sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | gr
 alias grep='grep --color=auto '
 
 alias rlbp="source ~/.bash_profile"
+
 alias g="git"
+__git_complete g __git_main
 
 # Git
 alias gcb="git checkout -b"
+alias fix_dot_remote="git remote set-url origin git@github.com:npazo/dfiles.git"
 
 # Docker
 alias dbuild='docker build -t ${PWD##*/}:latest .'
 alias drun="docker run -it --rm -v $(pwd):/tmp/src -w /tmp/src"
+
+# Terraform
+alias tf_apply="terraform apply"
+alias tf_apply_aa="terraform apply --auto-approve"
 
 alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
