@@ -65,7 +65,6 @@ packer(){
 		packer "$@"
 }
 
-
 python(){
 	docker run -it --rm \
 		-v "$(pwd):/tmp/src" \
