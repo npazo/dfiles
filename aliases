@@ -1,4 +1,3 @@
-#!/bin/bash
 
 #curl https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker -o /etc/bash_completion.d/docker.sh
 #curl -XGET https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker > $(brew --prefix)/etc/bash_completion.d/docker
@@ -29,7 +28,10 @@ alias grep='grep --color=auto '
 alias rlbp="source ~/.bash_profile"
 
 alias g="git"
-__git_complete g __git_main
+if [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+   __git_complete g __git_main
+fi
+
 
 alias install_ohmyzsh='sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 
