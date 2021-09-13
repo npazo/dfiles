@@ -31,6 +31,8 @@ alias rlbp="source ~/.bash_profile"
 alias g="git"
 __git_complete g __git_main
 
+alias install_ohmyzsh='sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+
 # Git
 alias gcb="git checkout -b"
 alias fix_dot_remote="git remote set-url origin git@github.com:npazo/dfiles.git"

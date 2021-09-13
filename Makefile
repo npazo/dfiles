@@ -14,6 +14,7 @@ sync:
 	[ -f ~/.ssh/config ] || ln -s $(PWD)/ssh_config ~/.ssh/config
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux.conf ~/.tmux.conf
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
+	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
 
 	if ! [ -x "$(shell command -v curl)" ]; then \
   		echo 'Error: curl is not installed.'; \
@@ -37,7 +38,8 @@ clean:
 	rm -f ~/.gitconfig
 	rm -f ~/.ssh/config
 	rm -f ~/.tmux.conf
-	rm -f ~/.vimrc 
+	rm -f ~/.vimrc
+	rm -f ~/.zshrc 
 
 check:
 	[ -f ~/.ssh/sshconfig.local ] || echo "WARNING: Local SSH config doesn not exist"
