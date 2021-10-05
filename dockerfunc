@@ -1,6 +1,8 @@
 #!/bin/sh
 
-set -a
+if [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+	set -a
+fi
 
 # generic function to open /bin/sh for the specified docker container
 dshell() {
