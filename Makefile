@@ -11,6 +11,7 @@ sync:
 	[ -f ~/.dockerfunc ] || ln -s $(PWD)/dockerfunc ~/.dockerfunc
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 	[ -f ~/.gitignore_global ] || ln -s $(PWD)/gitignore_global ~/.gitignore_global
+	[ -f ~/.p10k.zsh ] || ln -s $(PWD)/p10k.zsh ~/.p10k.zsh
 	[ -f ~/.ssh/config ] || ln -s $(PWD)/ssh_config ~/.ssh/config
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmux.conf ~/.tmux.conf
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
@@ -25,7 +26,7 @@ sync:
 
 	chmod 600 ~/.ssh/config
 	source ~/.bashrc
-	
+
 clean:
 	rm -f ~/.aliases
 	rm -f ~/.bash_functions
@@ -36,10 +37,11 @@ clean:
 	rm -f ~/.git-completion.bash
 	rm -f ~/.gitignore_global
 	rm -f ~/.gitconfig
+	rm -f ~/.p10k.zsh
 	rm -f ~/.ssh/config
 	rm -f ~/.tmux.conf
 	rm -f ~/.vimrc
-	rm -f ~/.zshrc 
+	rm -f ~/.zshrc
 
 check:
 	[ -f ~/.ssh/sshconfig.local ] || echo "WARNING: Local SSH config doesn not exist"
