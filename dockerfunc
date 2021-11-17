@@ -84,7 +84,6 @@ python(){
 	docker run -it --rm \
 		-v "$(pwd):/tmp/src" \
 		-w /tmp/src \
-		--name python \
 		python "$@"
 }
 
@@ -99,7 +98,6 @@ pythonaws(){
 		$env_string \
 		-w /tmp/src \
 		--log-driver none \
-		--name python \
 		python "$@"
 }
 
