@@ -101,6 +101,14 @@ pythonaws(){
 		python "$@"
 }
 
+stow(){
+	docker run --rm \
+		-v "$(pwd):/tmp/src" \
+		-w /tmp/src \
+		--name ubuntu \
+		stow "$@"
+}
+
 terraform(){
 	if [[ -z "${D_IMG_VER}" ]]; then
   		VERSION="latest"
