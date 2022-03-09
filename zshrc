@@ -84,6 +84,8 @@ plugins=(
     zsh-autosuggestions
 )
 
+bindkey '^a' forward-word
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
