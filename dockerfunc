@@ -29,7 +29,7 @@ ansible(){
 		ansible "$@"
 }
 
-ansible-playbook(){
+ansible_playbook(){
 	docker run --rm \
 		-v "$(pwd):/tmp/src" \
 		-v "${HOME}/.aws:/root/.aws" \
@@ -42,7 +42,7 @@ ansible-playbook(){
 		"$@"
 }
 
-ansible-inventory(){
+ansible_inventory(){
 	docker run --rm \
 		-v "$(pwd):/tmp/src" \
 		-v "${HOME}/.aws:/root/.aws" \
