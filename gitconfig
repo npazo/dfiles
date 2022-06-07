@@ -33,7 +33,7 @@
   	pr = !"pr() { git fetch origin pull/$1/head:pr-$1; git checkout pr-$1; }; pr"
 
 	# View the current working tree status using the short format
-	s = status -s
+	s = status -s -b
 
 	undo = !git reset HEAD~1 --mixed
 
@@ -50,3 +50,5 @@
 # use separate file for username / github token / etc
 [include]
   	path = ~/.gitconfig.local
+[init]
+	defaultBranch = main
