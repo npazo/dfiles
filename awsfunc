@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+	set -a
+fi
+
+list_instances_name() {
+    aws ec2 describe-instances \
+    --no-paginate \
+    --query 'Reservations[*].Instances[*].{Name:Tags[?Key==`Name`]|[0].Value}' \
+    --output text
+}

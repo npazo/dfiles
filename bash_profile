@@ -1,12 +1,11 @@
 # [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 base_files=("aliases" "bash_functions" "dockerfunc" "localdfiles/")
-
 if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
    base_files+=("")
 elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
 	test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-   base_files=("git-completion.bash" "bashrc" "${base_files[@]}")
+	base_files=("git-completion.bash" "bashrc" "${base_files[@]}")
 #else
    # assume something else
 fi
