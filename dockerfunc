@@ -18,9 +18,10 @@ dshell() {
 		-w /tmp/src \
 		-it \
 		--entrypoint=${D_SHELL} \
-		$1
+		$@
 }
 
+# same as above but with finch
 fshell() {
 	if [[ -z "${D_SHELL}" ]]; then
   		D_SHELL="/bin/sh"
@@ -33,9 +34,14 @@ fshell() {
 		-w /tmp/src \
 		-it \
 		--entrypoint=${D_SHELL} \
-		$1
+		$@
 }
 
+dlabel(){
+	docker inspect -f '{{json .Config.Labels}}' $1 |jq '.'
+}
+
+## Container/command shortcuts
 ansible(){
 	docker run --rm \
 		-v "$(pwd):/tmp/src" \
@@ -72,8 +78,10 @@ ansible_inventory(){
 aws(){
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
+		-v "$(pwd):/tmp/src" \
 		--log-driver none \
 		--name aws \
+		-w /tmp/src \
 		awscli "$@"
 }
 
