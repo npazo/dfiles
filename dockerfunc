@@ -4,6 +4,8 @@
 # 	set -a
 # fi
 
+DOCKER_COMMAND=(docker run --pull=never --rm)
+
 # generic function to open /bin/sh for the specified docker container
 dshell() {
 	if [[ -z "${D_SHELL}" ]]; then
@@ -11,7 +13,7 @@ dshell() {
 	else
   		D_SHELL="${D_SHELL}"
 	fi
-	docker run --rm \
+	${DOCKER_COMMAND[@]} \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
 		-v /var/run/docker.sock:/var/run/docker.sock \
@@ -47,7 +49,7 @@ ansible(){
 		-v "$(pwd):/tmp/src" \
 		-w /tmp/src \
 		--name ansible \
-		ansible "$@"
+		localhost/ansible "$@"
 }
 
 ansible_playbook(){
@@ -59,7 +61,7 @@ ansible_playbook(){
 		-w /tmp/src \
 		--entrypoint ansible-playbook \
 		--name ansible \
-		ansible \
+		localhost/ansible \
 		"$@"
 }
 
@@ -82,7 +84,7 @@ aws(){
 		--log-driver none \
 		--name aws \
 		-w /tmp/src \
-		awscli "$@"
+		amazon/aws-cli:latest "$@"
 }
 
 mdtohtml(){
@@ -91,6 +93,11 @@ mdtohtml(){
 		--workdir=/tmp/src \
 		ubuntu \
 		pandoc -o temp.html $1
+}
+
+mytop() {
+	${DOCKER_COMMAND[@]} -it \
+		mytop "$@"
 }
 
 packer(){
@@ -113,7 +120,7 @@ python(){
 pythonaws(){
 	env_string=""
 	if [[ -f "env.ignore" ]]; then
-		env_string="--env-file ./env.ignore"
+		env_string='--env-file ./env.ignore'
 	fi
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
@@ -141,8 +148,8 @@ terraform(){
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
-		-v /var/run/docker.sock:/var/run/docker.sock \
 		-w /tmp/src \
 		--name terraform \
 		terraform:${VERSION} "$@"
+		# -v /var/run/docker.sock:/var/run/docker.sock \
 }

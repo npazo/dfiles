@@ -85,7 +85,12 @@ plugins=(
     zsh-autosuggestions
 )
 
-bindkey '^a' forward-word
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^f' forward-word
+bindkey '^q' push-input
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-wordm
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,6 +119,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+setopt EXTENDED_HISTORY           # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY         # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY              # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST     # Expire a duplicate event first when trimming history.
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
