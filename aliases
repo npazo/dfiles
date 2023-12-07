@@ -40,11 +40,14 @@ alias gcb="git checkout -b"
 alias fix_dot_remote="git remote set-url origin git@github.com:npazo/dfiles.git"
 
 # Docker
-alias dbuild='docker build -t ${PWD##*/}:latest .'
+alias dbuild='docker build -t localhost/${PWD##*/}:latest .'
 alias drun="docker run -it --rm -v $(pwd):/tmp/src -w /tmp/src"
 
 # Terraform
 alias tf_apply="terraform apply"
 alias tf_apply_aa="terraform apply --auto-approve"
 
+
 alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
+
+alias rgit="ssh -i ~/.ssh/sr_pazoles ec2-user@nick.dev.srdevel.com sh dev-machine/git.sh"
