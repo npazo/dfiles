@@ -2,6 +2,12 @@
 # BASH
 ############
 
+msd() {
+  SPORT=$1
+
+  DOCKER_CONTEXT=nick.dev docker exec -it devops-dev-$1 /bin/bash
+}
+
 bump_version(){
 	# Set period as delimiter
 	IFS='.'
@@ -50,6 +56,10 @@ f() {
   find / -name "$1" 2>&1 | grep -v -e 'Permission denied' -e 'Operation not permitted'
 }
 
+j2y () {
+	echo $1 | yq -p=json /dev/stdin
+}
+
 # Create a new directory and enter it
 mkd() {
 	mkdir -p "$@"
@@ -85,9 +95,9 @@ dcleanup(){
 	local images
 	images=( $(docker images --filter dangling=true -q 2>/dev/null) )
 	docker rmi "${images[@]}" 2>/dev/null
- 	local dangling_volumes
-	dangling_volumes=( $(docker volume ls -qf dangling=true) )
-  	docker volume rm "${dangling_volumes[@]}" 2>/dev/null
+ 	# local dangling_volumes
+	# dangling_volumes=( $(docker volume ls -qf dangling=true) )
+  	# docker volume rm "${dangling_volumes[@]}" 2>/dev/null
 }
 
 ddel_stopped(){
