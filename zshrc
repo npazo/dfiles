@@ -129,4 +129,10 @@ setopt HIST_EXPIRE_DUPS_FIRST     # Expire a duplicate event first when trimming
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
- source ~/.bash_profile
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+   export TERM='xterm-256color'
+fi
+
+export AWS_PROFILE=default
+
+source ~/.bash_profile
