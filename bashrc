@@ -17,7 +17,7 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 type shopt &> /dev/null && shopt -s histappend  # append to history, don't overwrite it
 
 # apt install source-highlight
-if [ -f /usr/bin/src-hilite-lesspipe.sh ]; then	
+if [ -f /usr/bin/src-hilite-lesspipe.sh ]; then
 	export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 	export LESS=' -R '
 fi
@@ -145,7 +145,7 @@ prompt_git() {
 		[ -n "${s}" ] && s=" [${s}]";
 
 		echo -e "${1}${branchName}${yellow}${s}";
-		
+
 	else
 		return;
 	fi;

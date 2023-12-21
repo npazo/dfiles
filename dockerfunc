@@ -78,13 +78,18 @@ ansible_inventory(){
 }
 
 aws(){
-	docker run -it --rm \
+	docker run --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
+		-e AWS_PROFILE=$AWS_PROFILE \
 		--log-driver none \
 		--name aws \
 		-w /tmp/src \
 		amazon/aws-cli:latest "$@"
+}
+
+debian-toolbox(){
+	docker start -i debian-toolbox
 }
 
 mdtohtml(){
@@ -141,15 +146,16 @@ stow(){
 
 terraform(){
 	if [[ -z "${D_IMG_VER}" ]]; then
-  		VERSION="latest"
+  		VERSION="1.6"
 	else
   		VERSION="${D_IMG_VER}"
 	fi
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
+		-e AWS_PROFILE=$AWS_PROFILE \
 		-w /tmp/src \
 		--name terraform \
-		terraform:${VERSION} "$@"
+		hashicorp/terraform:${VERSION} "$@"
 		# -v /var/run/docker.sock:/var/run/docker.sock \
 }
