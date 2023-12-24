@@ -29,9 +29,16 @@
   # Zsh >= 5.1 is required.
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
+  function prompt_my_need_reboot() {
+    if [ -f "/var/run/reboot-required" ]; then
+      p10k segment -i "❗️"      
+    fi
+  }
+  
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     os_icon               # os identifier
+    my_need_reboot
     context               # user@hostname
     dir                     # current directory
     vcs                     # git status
