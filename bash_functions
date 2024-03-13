@@ -127,6 +127,11 @@ git_email() {
 	echo -e '\t'"path = .gitconfig.$1" >> ~/.gitconfig.local
 }
 
+# track all remote branches
+git_trall () {
+	for remote in `git branch -r | grep -v /HEAD`; do git checkout --track $remote ; done
+}
+
 # Copy just different files between current branch and master to a subfolder
 git_save() {
 	tmpDir="./git.diff.files"
