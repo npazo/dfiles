@@ -119,7 +119,7 @@ python(){
 	docker run -it --rm \
 		-v "$(pwd):/tmp/src" \
 		-w /tmp/src \
-		python "$@"
+		localhost/python "$@"
 }
 
 pythonaws(){
@@ -130,10 +130,11 @@ pythonaws(){
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		-v "$(pwd):/tmp/src" \
+		-e AWS_PROFILE=$AWS_PROFILE \
 		$env_string \
 		-w /tmp/src \
 		--log-driver none \
-		python "$@"
+		localhost/python "$@"
 }
 
 stow(){
