@@ -168,3 +168,5 @@ export PS1;
 
 PS2="\\[${yellow}\\]→ \\[${reset}\\]";
 export PS2;
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
