@@ -13,14 +13,29 @@ dshell() {
 	else
   		D_SHELL="${D_SHELL}"
 	fi
-	${DOCKER_COMMAND[@]} \
-		-v "${HOME}/.aws:/root/.aws" \
-		-v "$(pwd):/tmp/src" \
-		-v /var/run/docker.sock:/var/run/docker.sock \
-		-w /tmp/src \
-		-it \
-		--entrypoint=${D_SHELL} \
-		$@
+	if ! command -v aws-vault >/dev/null 2>&1
+	then
+		${DOCKER_COMMAND[@]} \
+			-v "${HOME}/.aws:/root/.aws" \
+			-v "$(pwd):/tmp/src" \
+			-v /var/run/docker.sock:/var/run/docker.sock \
+			-w /tmp/src \
+			-it \
+			--entrypoint=${D_SHELL} \
+			$@
+	else
+		aws-vault exec $AWS_PROFILE -- \
+		${DOCKER_COMMAND[@]} \
+			-e AWS_ACCESS_KEY_ID \
+			-e AWS_SECRET_ACCESS_KEY \
+			-e AWS_SESSION_TOKEN \
+			-v "$(pwd):/tmp/src" \
+			-v /var/run/docker.sock:/var/run/docker.sock \
+			-w /tmp/src \
+			-it \
+			--entrypoint=${D_SHELL} \
+			$@
+	fi
 }
 
 # same as above but with finch
@@ -102,7 +117,7 @@ mdtohtml(){
 
 mytop() {
 	${DOCKER_COMMAND[@]} -it \
-		mytop "$@"
+		localhost/mytop "$@"
 }
 
 packer(){
@@ -147,7 +162,7 @@ stow(){
 
 terraform(){
 	if [[ -z "${D_IMG_VER}" ]]; then
-  		VERSION="1.6"
+  		VERSION="1.15"
 	else
   		VERSION="${D_IMG_VER}"
 	fi
