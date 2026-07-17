@@ -9,6 +9,7 @@ sync:
 	[ -f ~/.bashrc ] || ln -s $(PWD)/bashrc ~/.bashrc
 	[ -f ~/.bin/ ] || ln -s $(PWD)/bin ~/.bin
 	[ -f ~/.dockerfunc ] || ln -s $(PWD)/dockerfunc ~/.dockerfunc
+	[ -f ~/.fzf.zsh ] || ln -s $(PWD)/fzf.zsh ~/.fzf.zsh
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 	[ -f ~/.gitignore_global ] || ln -s $(PWD)/gitignore_global ~/.gitignore_global
 	[ -f ~/.p10k.zsh ] || ln -s $(PWD)/p10k.zsh ~/.p10k.zsh
@@ -17,12 +18,12 @@ sync:
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
 
-	if ! [ -x "$(shell command -v curl)" ]; then \
-  		echo 'Error: curl is not installed.'; \
-	else \
-		curl -s https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o git-completion.bash; \
-		[ -f ~/.git-completion.bash ] || ln -s $(PWD)/git-completion.bash ~/.git-completion.bash; \
-	fi;
+#	if ! [ -x "$(shell command -v curl)" ]; then \
+ # 		echo 'Error: curl is not installed.'; \
+#	else \
+#		curl -s https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o git-completion.bash; \
+#		[ -f ~/.git-completion.bash ] || ln -s $(PWD)/git-completion.bash ~/.git-completion.bash; \
+#	fi;
 
 	chmod 600 ~/.ssh/config
 	source ~/.bashrc
@@ -34,6 +35,7 @@ clean:
 	rm -f ~/.bashrc
 	rm -f ~/.bin
 	rm -f ~/.dockerfunc
+	rm -f ~/.fzf.zsh
 	rm -f ~/.git-completion.bash
 	rm -f ~/.gitignore_global
 	rm -f ~/.gitconfig

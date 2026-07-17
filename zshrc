@@ -144,4 +144,8 @@ export AWS_PROFILE=default
 
 source ~/.bash_profile
 
+# Load fuzzy history search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Load local zshrc overrides if they exist
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
