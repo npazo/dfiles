@@ -100,7 +100,7 @@
     vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
     # vpn_ip                # virtual private network indicator
     # load                  # CPU load
-    # disk_usage            # disk usage
+    disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
     todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
@@ -769,7 +769,7 @@
   typeset -g POWERLEVEL9K_DISK_USAGE_WARNING_LEVEL=90
   typeset -g POWERLEVEL9K_DISK_USAGE_CRITICAL_LEVEL=95
   # If set to true, hide disk usage when below $POWERLEVEL9K_DISK_USAGE_WARNING_LEVEL percent.
-  typeset -g POWERLEVEL9K_DISK_USAGE_ONLY_WARNING=false
+  typeset -g POWERLEVEL9K_DISK_USAGE_ONLY_WARNING=true
   # Custom icon.
   # typeset -g POWERLEVEL9K_DISK_USAGE_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
